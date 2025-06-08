@@ -1,10 +1,67 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Chữ Lộc ù</title>
+  <meta charset="UTF-8">
+  <title>Trang Blog</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7fafc; margin: 0; }
+    .container { max-width: 900px; margin: 40px auto; padding: 16px; }
+    h1 { text-align: center; margin-bottom: 24px; }
+    .grid { display: flex; gap: 24px; flex-wrap: wrap; }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #0001;
+      padding: 16px;
+      width: 280px;
+      cursor: pointer;
+      transition: box-shadow .2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:hover { box-shadow: 0 6px 24px #0002; }
+    .card img { width: 100%; height: 140px; object-fit: cover; border-radius: 12px; }
+    .card h2 { font-size: 1.1rem; margin: 12px 0 8px; }
+    .card p { color: #555; font-size: 0.98rem; }
+  </style>
 </head>
 <body>
-    Lộc ù
+  <div class="container">
+    <h1>Blog nổi bật</h1>
+    <div class="grid" id="blog-list">
+      <!-- Các thẻ blog sẽ được thêm bằng JS -->
+    </div>
+  </div>
+  <script>
+    // Dữ liệu blog mẫu
+    const blogs = [
+      {
+        id: 1,
+        title: "Hướng dẫn sử dụng Turbuhaler",
+        summary: "Cách sử dụng bình hít Turbuhaler hiệu quả nhất.",
+        image: "https://source.unsplash.com/random/400x200?inhaler"
+      },
+      {
+        id: 2,
+        title: "Dinh dưỡng cho người lớn tuổi",
+        summary: "Chế độ ăn uống hợp lý giúp tăng cường sức khỏe.",
+        image: "https://source.unsplash.com/random/400x200?food"
+      }
+    ];
+
+    // Render card
+    const blogList = document.getElementById('blog-list');
+    blogs.forEach(blog => {
+      const a = document.createElement('a');
+      a.href = `blog-detail.html?id=${blog.id}`;
+      a.className = 'card';
+      a.innerHTML = `
+        <img src="${blog.image}" alt="${blog.title}">
+        <h2>${blog.title}</h2>
+        <p>${blog.summary}</p>
+      `;
+      blogList.appendChild(a);
+    });
+  </script>
 </body>
 </html>
